@@ -12,9 +12,14 @@ export default function SearchResult(props) {
             bounds: new props.google.maps.LatLngBounds({ lat: -1.9433, lng: 30.0587 }),
         }
         
-        service.getPlacePredictions(request).then(({predictions}) => {
-            setResponse(predictions[0].description)
-            console.log(predictions)
+        service.getQueryPredictions(request, (data) => {
+            data = data.filter((arr)=>{
+                return arr.hasOwnProperty("place_id");
+            })
+
+            setResponse(() => data[0].description)
+            
+            console.log(data)
         })
         
     })
