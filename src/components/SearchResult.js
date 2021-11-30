@@ -1,31 +1,71 @@
 import React, { useEffect,useRef,useState } from 'react'
+import formatData from '../helperFuncs/formatData';
+import mapFunc from '../services/mapFunc';
+import '../components/Map'
 
 export default function SearchResult(props) {
 
-    var [response, setResponse] = useState("no change");
-    var service = new props.google.maps.places.AutocompleteService();
+    var [response, setResponse] = useState([]);
 
     useEffect(() => {
+        setResponse([]);
 
+        var service = new props.google.maps.places.AutocompleteService();
+    
+    
         var request = {
             input: props.input,
             bounds: new props.google.maps.LatLngBounds({ lat: -1.9433, lng: 30.0587 }),
         }
         
         service.getQueryPredictions(request, (data) => {
-            data = data.filter((arr)=>{
-                return arr.hasOwnProperty("place_id");
-            })
-
-            setResponse(() => data[0].description)
             
-            console.log(data)
-        })
+            console.log("query runned")
+
+            if (data !== null) {
+                
+                data = data.filter((arr)=>{
+                    return arr.hasOwnProperty("place_id");
+                })
         
-    })
-    console.log("searchResult inputState", props.input);
-    
-    console.log(response)
+                data.forEach((data) => {
+                    const request = {
+                        placeId: data.place_id,
+                        fields: [
+                            "address_components",
+                            "adr_address",
+                            "formatted_address",
+                            "formatted_phone_number",
+                            "geometry",
+                            "name",
+                            "photos",
+                            "types",
+                            "utc_offset_minutes",
+                            "website",
+                        ]
+                    }
+                    
+                    const callback = (data, status) => {
+                        if (status === 'OK') {
+                            setResponse((state) => {
+                                state.push(data);
+                                return state;
+                            })
+                        } else {
+                            console.log(`error with status ${status}`);
+                        }
+                    }
+        
+                    new props.google.maps.places.PlacesService(props.state.map).getDetails(request, callback);
+        
+                })
+            } else {
+                console.log("fetched null data")
+            }
+        })
+    },[props.input])
+
+    // console.log(response);
 
     return (
         <div style={{
@@ -34,8 +74,13 @@ export default function SearchResult(props) {
             backgroundColor: "blue",
             position: "absolute",
             zIndex: 10
-            }}>
-                {response}
+        }}>
+            typed
+        {props.input}
+            {
+                console.log(response)
+               
+            }
         </div> 
     )
 }
