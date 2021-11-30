@@ -44,7 +44,7 @@ export function App() {
         <div id="CardMapWrapper">
           <div className="Maps">
             {/* eslint-disable-next-line no-sequences */}
-            <Maps state={state} toggle={{showState,setShowState}}/>
+            <Maps state={state} dispatch={dispatch} toggle={{showState,setShowState}}/>
           </div>
           <div className="Card">
              {/* eslint-disable-next-line no-sequences */}

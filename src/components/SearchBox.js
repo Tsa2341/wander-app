@@ -23,8 +23,6 @@ export default function SearchBox(props) {
     })
   };
 
-  console.log("searchbox inputState",inputState)
-
   // useEffect(() => {
 
   //   //creating the searchBox instance
@@ -77,7 +75,7 @@ export default function SearchBox(props) {
         <input onChange={updateState} type="text" className="input" ref={inputRef} placeholder="Add a place or an address"></input>
       {/* <i className="fa fa-map-marker fa-3x"></i> */}
       {
-        inputState !== "" &&  <SearchResult input={inputState}  google={window.google} />
+        inputState !== "" &&  <SearchResult input={inputState} state={props.state}  google={window.google} />
       }
       </div>
   );

@@ -6,25 +6,17 @@ import '../fbconfig.js';
 import '../styles/Map.css'
 
 
-export function Maps(props) {
-
+export default function Maps(props) {
+    
     //useEffect to update when props changes
     useEffect(() => {
+        
+        var map = mapFunc(window.google);
 
-        var map = mapFunc(window);
-
-        let request = {
-            placeId: 'ChIJ9xzt5AYVkFQRTSTBq6a4nWc',
-            fields: ['name', 'business_status',"photos","geometry.location"]
-        };
-
-        function callback(result) {
-            console.log(result);
-        }
-
-        let service = new window.google.maps.places.PlacesService(map);
-
-        service.getDetails(request, callback)
+        props.dispatch({
+            type: 'MAP',
+            payload: map,
+        });
 
         //create all markers
         props.state.store.map((cards) => {
@@ -34,7 +26,7 @@ export function Maps(props) {
                 title: cards.name,
             });
         });
-
+        
         //add a listener on the close/show btn on the map
         // document.getElementById('mapBtn').addEventListener('click',()=>{
         //     props.toggle.setShowState(!props.toggle.showState);
@@ -46,7 +38,7 @@ export function Maps(props) {
         //     document.getElementById('map').addClass("showMap");
         // }
 
-    })
+    },[props.state.store])
 
 
     // const styles = {
@@ -61,8 +53,8 @@ export function Maps(props) {
 }
     
 
-export default GoogleApiWrapper({
-    //To be used in development mode only.
-    apiKey: 'AIzaSyD7sWrpN3kV89Nw-ZF77sCb-zljQao9N-w'
-})(Maps);
+// export default GoogleApiWrapper({
+//     //To be used in development mode only.
+//     apiKey: 'AIzaSyD7sWrpN3kV89Nw-ZF77sCb-zljQao9N-w'
+// })(Maps);
 

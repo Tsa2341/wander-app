@@ -26,7 +26,9 @@ export default function mapReducer(state, action) {
             return newState;
 
         case 'SET':
-            return {store: action.payload}
+            return { store: action.payload };
+        case 'MAP':
+            return { ...state, map: action.payload };
         default:
             return state;
     }
