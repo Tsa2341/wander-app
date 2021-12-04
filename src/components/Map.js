@@ -11,7 +11,6 @@ export default function Maps(props) {
     
     //useEffect to update when props changes
     useEffect(() => {
-
         
         var map = mapFunc(window.google);
 
