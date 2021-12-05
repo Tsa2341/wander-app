@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect,useRef,useState } from 'react'
 import formatData from '../helperFuncs/formatData';
-import mapFunc from '../services/mapFunc';
-import '../components/Map'
 import SearchResponse from './SearchResponse'
+import '../styles/SearchResult.css'
 
 export default function SearchResult(props) {
 
@@ -132,17 +131,8 @@ export default function SearchResult(props) {
 
 
     return (
-        <div style={{
-            width: "400px",
-            height: "400px",
-            backgroundColor: "blue",
-            position: "absolute",
-            zIndex: 10
-        }}>
-            
+        <div className="result-wrapper">
             {response[0] && response.map((response,index) => { return <SearchResponse response={response} dispatch={props.dispatch} index={index} state={props.state} /> })}
-
         </div>
-        
     )
 }

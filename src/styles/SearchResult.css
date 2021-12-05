@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "poppinsBold";
+    src: url("../styles/fonts/Poppins-Bold.ttf");
+}
+
+.result-wrapper{
+    height: auto;
+    background: rgba(255, 255, 255, 0.9);;
+    z-index: 50;
+    padding: 0px 5% 0px 5%;
+    display: grid;
+    grid-auto-flow: row;
+    font-family: "poppinsBold";
+}
+.response-wrapper{
+    border-bottom: 1px solid rgba(104, 104, 104, 0.2);
+    word-break: break-all;
+}
+.response-wrapper p{
+    margin: 5% 0px 5% 0px;
+}
+
+.response-wrapper:hover{
+    color: #219FA8;
+    /* border-bottom: 3px solid #219FA8; */
+}

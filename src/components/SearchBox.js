@@ -17,19 +17,29 @@ export default function SearchBox(props) {
   var [inputState, setInputState] = useState("");
   var inputRef = useRef();
 
-  function updateState(e) {
-    setInputState(() => {
-      return e.target.value;
-    })
-  };
+  // useEffect(()=>{
+  //   var inputEl = document.getElementById("input");
+  //   inputEl.addEventListener('mouseout',()=>{
+  //     inputEl.parentNode.childNodes[1].addAttribute('class','hide')
+  //   })
+  // },[])
+
 
   return (
-      <div>
-        <input onChange={updateState} type="text" className="input" ref={inputRef} placeholder="Add a place or an address"></input>
-      {/* <i className="fa fa-map-marker fa-3x"></i> */}
-      {
-        inputState !== "" &&  <SearchResult input={inputState} state={props.state} dispatch={props.dispatch}  google={window.google} />
-      }
+      <div className="form-wrapper">
+        <div className="input-wrapper">
+          <img className="input-img" src="locationmarker.svg" alt="marker icon"></img>
+          <input
+            id="input"
+            onChange={(e)=>{ setInputState(() => e.target.value )}}
+            type="text" className="input" 
+            ref={inputRef} 
+            placeholder="Add a place or an address"
+          ></input>
+        </div>
+        {
+          inputState !== "" &&  <SearchResult input={inputState} state={props.state} dispatch={props.dispatch}  google={window.google} />
+        }
       </div>
   );
   

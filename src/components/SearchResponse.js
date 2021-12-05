@@ -42,10 +42,11 @@ export default function SearchResponse({ response,  index, state, dispatch }) {
     })
 
 
-    return (<div id={index} key={index}>
-            { console.log(index) }
-                { response.name }<br />
-                { response.address }
+    return (<div id={index} key={index} className="response-wrapper">
+                <p>
+                    { response.name }<br />
+                    { response.address }
+                </p>
             </div>
     )
 }
