@@ -1,0 +1,7 @@
+#hide-map{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #FFFFFF;
+    border: 2px black;
+}

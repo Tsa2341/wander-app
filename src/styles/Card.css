@@ -2,41 +2,95 @@
 	font-family: "poppinsBold";
 	src: url("./fonts/poppins.bold.ttf");
 	font-weight: bold;
-	font-size: 16px;
 	font-style: normal;
 	font-weight: 700;
+
 }
-.card-container {
+
+.outter-card-container{
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+}
+
+.card-container-s {
 	position: relative;
 	width: 26.5vw;
 	height: 8vw;
-	margin-left: 3.6vw;
-	margin-right: 3.6vw;
-	margin-bottom: 1.7vw;
+	margin: 0px 2.6vw 1.7vw 2.6vw;
 	background: #FFFFFF;
 	box-shadow: 0px 2px 12px 2px rgba(221, 221, 221, 0.938);
 	display: flex;
 	flex-direction: row;
 	text-align: center;
+	border-radius: 2px;
 }
-img{
-	position: absolute; 
-	top: 0px;
-	left: 0px;
-	width: 8.5vw;
+.card-container-l {
+	position: relative;
+	width: 21.5vw;
+	height: 44.3vh;
+	background: #FFFFFF;
+	box-shadow: 0px 2px 12px 2px rgba(137, 137, 137, 0.15);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 2px;
+	margin: 0px 4vw 2vw 4vw;
+}
+
+.img-s{
+	width: 35%;
 	height: 8vw;
 	-webkit-user-drag: none;
+	border-radius: 2px;
 }
-.inner-return-wrapper{
-	position: relative;
+.img-l{
+	width: 100%;
+	height: 70.5%;
+	-webkit-user-drag: none;
+	border-radius: 2px;
+}
+.card-wrapper-s{
+	width: 65%;
 	height: 100%;
+	/* background-color: lawngreen; */
+	text-size-adjust:inherit;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
-.card-p {
+.card-wrapper-l{
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 29.5%;
+	/* background-color: lawngreen; */
+	display: flex;
+
+}
+
+.card-p-s{
 	position: absolute;
 	left: calc(8.5vw + 20px);
-	font-family: "poppinsBold";
-	line-height: 24px;
-	letter-spacing: 0em;
-	text-align: left;
 	color: #000000;
+	text-align: left;
+	font-family: "poppinsBold";
+	font-size: 1em;
+	letter-spacing: 0em;
+	line-height: 1.5em;
+}
+.card-p-l{
+	position: absolute;
+	/* background-color: khaki; */
+	color: #000000;
+	font-family: "poppinsBold";
+	font-size: 18px;
+	letter-spacing: 0em;
+	line-height: 1em;
+	/* padding : 30px; */
+	word-break: normal;
+	text-align: start;
+	margin-left: 13%;
 }

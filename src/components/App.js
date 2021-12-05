@@ -18,20 +18,37 @@ export function App() {
   //create a store
   var [state , dispatch] = useReducer(mapReducer, {
     store: [],
-    map: null
+    map: null,
+    toogleView: true,
   });
-  var [showState, setShowState] = useState(false)
 
   useEffect(() => {
     
     // get datta from the database and dispatch them to initialize the reducer
     getDb(dispatch).then(console.log("returned to app.js successfully")).catch(console.log("error in getDb func"))
+  },[])
+  
+  useEffect(()=>{
+    const showMapBtn =  document.getElementById("show-map-btn")
+    if(showMapBtn){
+      showMapBtn.addEventListener('click',(e)=>{
+        dispatch({
+          type : 'TOOGLE',
+          payload: true
+        })
+      })
+  
+      return ()=>{
+        showMapBtn.removeEventListener('click',(e)=>{
+          dispatch({
+            type : 'TOOGLE',
+            payload: true
+          })
+        })
+      }
+    }
 
-    // document.getElementById("show-map").addEventListener("click", (e) => {
-    //   // e.target.classList().addClass("show-map")
-    // })
-
-  },[]);
+  },[state.toogleView]);
 
   console.log("App.js ",state)
 
@@ -39,18 +56,36 @@ export function App() {
     (window.google && state.store) ?
       (<div className="app-wrapper">
         <div id="search-box">
+
           <SearchBox google={window.google} state={state} dispatch={dispatch}  ></SearchBox>
-          <div id="show-map"><img src="Btn.svg" alt="map" ></img></div>
+          { 
+            !state.toogleView && <div 
+              id="show-map-btn" 
+              class="show-map-btn"
+              >
+                <img src="Btn.svg" alt="map" ></img>
+            </div>
+          }
+
         </div>
         <div id="CardMapWrapper">
-          <div className="Maps">
-            {/* eslint-disable-next-line no-sequences */}
-            <Maps state={state} dispatch={dispatch} toggle={{showState,setShowState}}/>
-          </div>
-          <div className="Card">
+          
+          { state.toogleView && 
+            <div className="Maps">
+
+              {/* eslint-disable-next-line no-sequences */}
+              <Maps state={state} dispatch={dispatch}/>
+
+            </div>
+          } 
+          
+          <div className={state.toogleView ? "Card-s": "Card-l"}>
+
              {/* eslint-disable-next-line no-sequences */}
-            <Card state={state} toggle={{showState,setShowState}}/>
+            <Card state={state}/>
+
           </div>
+
         </div>
       </div>)
     : (<div className="not-connected"><b>PLEASE</b> connect and reload...</div>)

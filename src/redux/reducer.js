@@ -35,10 +35,14 @@ export default function mapReducer(state, action) {
             return newState;
 
         case 'SET':
-            return { store: action.payload ,  map: state.map};
+            return { store: action.payload ,  map: state.map, toogleView: state.toogleView};
         case 'MAP':
             var newState = { ...state };
             newState.map = action.payload;
+            return newState;
+        case 'TOOGLE':
+            var newState = { ...state };
+            newState.toogleView = action.payload;
             return newState;
         default:
             return state;

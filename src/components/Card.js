@@ -1,18 +1,26 @@
 import React from 'react'
 import '../styles/Card.css'
 
-export default function Card(props) {
+export default function Card({state}) {
     return (
-        <div >
+        <div className={state.toogleView ? null : "outter-card-container"} >
             {
-                props.state && props.state.store.length !== 0 &&
+                state && state.store.length !== 0 &&
                 (
-                    props.state.store.map((data , index) => {
+                    state.store.map((data , index) => {
                         return (
-                            <div className="card-container" key={index}>
-                                <img src={data.photo} alt={data.name}></img>
-                                <div className="inner-return-wrapper">
-                                    <p className="card-p">{data.name}</p>
+                            <div 
+                                className={ state.toogleView ? "card-container-s" : "card-container-l" } 
+                                key={index}
+                            >
+                                <img 
+                                    className={ state.toogleView ? "img-s" : "img-l"} 
+                                    src={data.photo} alt={data.name}
+                                ></img>
+                                <div className={state.toogleView ? "card-wrapper-s":"card-wrapper-l"}>
+                                    <p 
+                                        className={ state.toogleView ? "card-p-s" : "card-p-l"}
+                                    >{data.name}</p>
                                 </div>
                             </div>
                         )

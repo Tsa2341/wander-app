@@ -27,15 +27,35 @@ export default function Maps(props) {
                 title: cards.name,
             });
         });
-
-
-        
-
     },[props.state.store])
 
+    useEffect(()=>{
+        const hideMapBtn = document.getElementById("hide-map-btn");
+        hideMapBtn.addEventListener('click',()=>{
+            props.dispatch({
+                type : 'TOOGLE',
+                payload: false
+            })
+        })
+
+        return ()=>{
+            hideMapBtn.removeEventListener('click',()=>{
+                props.dispatch({
+                    type : 'TOOGLE',
+                    payload: false
+                })
+            })
+        }
+    })
+
       return (
-        <div id="map">
-        </div>
+          <div>
+              <div id="map"></div>
+              <div 
+                id="hide-map-btn" 
+                class="hide-map-btn"
+              >Close map</div>
+          </div>
       );
 }
     
