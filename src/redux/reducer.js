@@ -7,7 +7,7 @@ export default function mapReducer(state, action) {
     switch (action.type) {
         case "ADD":
 
-            //Check if the payoad alredy exist in the state
+            //Check if the payoad alredy exist in the state and return
             for (const el of state.store) {
                 for (const obj of action.payload) {
                     if (obj.address === el.address) {
@@ -31,11 +31,11 @@ export default function mapReducer(state, action) {
                 }
             }).catch(error => console.error(error));
 
-
+            //return the new State
             return newState;
 
         case 'SET':
-            return { store: action.payload ,  map: state.map, toogleView: state.toogleView};
+            return { store: [ ...state.store, ...action.payload ] ,  map: state.map, toogleView: state.toogleView};
         case 'MAP':
             var newState = { ...state };
             newState.map = action.payload;

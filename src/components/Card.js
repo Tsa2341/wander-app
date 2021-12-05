@@ -5,6 +5,7 @@ export default function Card({state}) {
     return (
         <div className={state.toogleView ? null : "outter-card-container"} >
             {
+                //Show the card component only if their are data in the store state
                 state && state.store.length !== 0 &&
                 (
                     state.store.map((data , index) => {

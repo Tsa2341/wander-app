@@ -1,5 +1,6 @@
 import '../styles/mapFunc.css'
 
+//Creates and serve the map instance to the app
 function mapFunc(google) {
 
     const map = new google.maps.Map(document.getElementById('map'), {

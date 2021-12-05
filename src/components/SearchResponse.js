@@ -7,14 +7,19 @@ export default function SearchResponse({ response,  index, state, dispatch }) {
     var marker = useRef();
 
     useEffect(() => {
+
+        //call the function to  add a marker on hover
         const handleMouseover = (e) => {
             marker.current = setMarker(response.location, response.name, state.map);
         }
         
+        //call the function to remove the marker if mouse out
         const handleMouseout = (e) => {
             removeMarker(marker.current);
         }
 
+        //save to database if the prediction clicked
+        //in order for the marker to be permanently displayed
         const handleClick = (e) => {
             console.log(document.getElementById(index));
             dispatch({
@@ -30,6 +35,7 @@ export default function SearchResponse({ response,  index, state, dispatch }) {
         
         el.addEventListener('click', handleClick)
 
+        //clean the listeners
         return (() => {
             el.removeEventListener('mouseover', handleMouseover);
 

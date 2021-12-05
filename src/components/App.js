@@ -1,12 +1,12 @@
 import { GoogleApiWrapper } from 'google-maps-react'
-import React , { useReducer, useState, useEffect } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import '../fbconfig.js'
 import mapReducer from "../redux/reducer.js"
-import Maps from './Map'
-import SearchBox from './SearchBox'
-import Card from './Card'
 import getDb from '../services/getDb'
 import '../styles/App.css'
+import Card from './Card'
+import Maps from './Map'
+import SearchBox from './SearchBox'
 
 
 const LoadingContainer = (props) => (
@@ -22,10 +22,9 @@ export function App() {
     toogleView: true,
   });
 
+  // get datta from the database and dispatch them to initialize the reducer
   useEffect(() => {
-    
-    // get datta from the database and dispatch them to initialize the reducer
-    getDb(dispatch).then(console.log("returned to app.js successfully")).catch(console.log("error in getDb func"))
+    getDb(dispatch).then(console.log("returned to app.js successfully")).catch((error)=> console.log(error))
   },[])
   
   useEffect(()=>{
@@ -51,6 +50,7 @@ export function App() {
   },[state.toogleView]);
 
   console.log("App.js ",state)
+  console.log(window.google)
 
   return (
     (window.google && state.store) ?

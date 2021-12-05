@@ -1,11 +1,8 @@
-import { GoogleApiWrapper } from 'google-maps-react';
 import React, {
-  useEffect,
   useRef,
   useState
 } from 'react';
 import '../fbconfig.js';
-import formatData from '../helperFuncs/formatData.js';
 import '../styles/SearchBox.css';
 import SearchResult from './SearchResult.js';
 
@@ -31,6 +28,7 @@ export default function SearchBox(props) {
           <img className="input-img" src="locationmarker.svg" alt="marker icon"></img>
           <input
             id="input"
+            //change the input state on every type
             onChange={(e)=>{ setInputState(() => e.target.value )}}
             type="text" className="input" 
             ref={inputRef} 
@@ -38,6 +36,7 @@ export default function SearchBox(props) {
           ></input>
         </div>
         {
+          //display the predictions if their is input
           inputState !== "" &&  <SearchResult input={inputState} state={props.state} dispatch={props.dispatch}  google={window.google} />
         }
       </div>

@@ -17,7 +17,7 @@ const getDb = async (dispatch) => {
     }).then(() => {
         console.log("setted data successfully");
     }).catch((error)=>{
-        console.log(error);
+        throw new Error("couldn't fetch from the database");
     });
 }
 
