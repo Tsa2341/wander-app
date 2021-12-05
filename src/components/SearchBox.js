@@ -1,5 +1,4 @@
 import React, {
-  useRef,
   useState
 } from 'react';
 import '../fbconfig.js';
@@ -12,7 +11,6 @@ import SearchResult from './SearchResult.js';
 export default function SearchBox(props) {
 
   var [inputState, setInputState] = useState("");
-  var inputRef = useRef();
 
   // useEffect(()=>{
   //   var inputEl = document.getElementById("input");
@@ -30,8 +28,7 @@ export default function SearchBox(props) {
             id="input"
             //change the input state on every type
             onChange={(e)=>{ setInputState(() => e.target.value )}}
-            type="text" className="input" 
-            ref={inputRef} 
+            type="text" className="input"
             placeholder="Add a place or an address"
           ></input>
         </div>

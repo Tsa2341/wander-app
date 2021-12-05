@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
-import setMarker from '../helperFuncs/setMarker'
-import removeMarker from '../helperFuncs/removeMarker'
+import React, { useEffect, useRef } from 'react';
+import removeMarker from '../helperFuncs/removeMarker';
+import setMarker from '../helperFuncs/setMarker';
 
 export default function SearchResponse({ response,  index, state, dispatch }) {
     
